@@ -111,3 +111,15 @@ Before updating this documentation repository workspace layout, let me know how 
 * I can generate a **Markdown matrix table** tracking the explicit block sizes, padding tokens, and context boundaries utilized by leading foundation repositories to execute high-concurrency cloud serving.
 * I can write a detailed technical explanation focusing on the **mathematics of FlashAttention causal mask skipping** and how matrix slicing loops bypass zero-weight computations natively at the hardware layer.
 
+
+
+## ⭐ Star History
+<div align="center">
+<a href="https://www.star-history.com/?repos=ishandutta2007/Awesome-Attention-Mask&type=date&legend=bottom-right">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Attention-Mask&type=date&theme=dark&legend=bottom-right" />
+<source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Attention-Mask&type=date&legend=bottom-right" />
+<img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Attention-Mask&type=date&legend=bottom-right" />
+</picture>
+</a>
+</div>
