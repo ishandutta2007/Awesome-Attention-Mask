@@ -1,3 +1,5 @@
+<p align="center"><img src="./assets/banner.svg" alt="Banner"></p>
+
 # Awesome-Attention-Mask
 ## Attention Masks in AI: History, Progression, Variants, & Applications
 
@@ -7,7 +9,7 @@ Because $\exp(-\infty) = 0$, passed through the Softmax function, these masked p
 
 ---
 
-## 1. The Macro Chronological Evolution
+## 🕰️ 1. The Macro Chronological Evolution
 
 The technical implementation of attention routing has transitioned from rigid flat batch padding to causal triangular locks, hardware-fused block-sparse masks, and modern multi-modal interleaving sequence boundaries.
 
@@ -31,7 +33,7 @@ flowchart LR
 
 ---
 
-## 2. Core Functional & Algorithmic Mask Variants
+## ⚙️ 2. Core Functional & Algorithmic Mask Variants
 
 Attention masks are strictly categorized based on the geometric boundaries they enforce over the Query-Key probability distribution.
 
@@ -44,7 +46,7 @@ Attention masks are strictly categorized based on the geometric boundaries they 
 
 ---
 
-## 3. High-Capacity Architectural & Token Masking Types
+## 🏗️ 3. High-Capacity Architectural & Token Masking Types
 
 Depending on the operational constraints of the distributed supercomputing cluster, attention masks are customized to manage multi-document parsing and hardware synchronization boundaries.
 
@@ -55,7 +57,7 @@ Depending on the operational constraints of the distributed supercomputing clust
 
 ---
 
-## 4. Production Engineering Challenges & Hardware Solutions
+## 🏭 4. Production Engineering Challenges & Hardware Solutions
 
 Deploying large-scale attention masking operations across high-concurrency cloud or edge serving infrastructures introduces critical tensor layout and memory bus constraints.
 
@@ -68,7 +70,7 @@ Deploying large-scale attention masking operations across high-concurrency cloud
 
 ---
 
-## 5. Frontier Real-World AI Industrial Applications
+## 🚀 5. Frontier Real-World AI Industrial Applications
 
 *   **Pre-Training Web-Scale Multi-Modal Foundational Transformers (GPT/Llama)**
     *   *Application:* Guides cluster-wide parameter initialization. Fused document-packing and multi-modal segment masks process text, code repos, and visual patches concurrently, allowing the model's parameters to internalize cross-sensory logic patterns smoothly without data leaks.
@@ -79,7 +81,7 @@ Deploying large-scale attention masking operations across high-concurrency cloud
 
 ---
 
-## References
+## 📚 References
 1. Vaswani, A., et al. (2017). Attention is all you need: Foundational transformer masking matrix blocks. *Advances in Neural Information Processing Systems (NeurIPS)*, 30 [INDEX: 1].
 2. Radford, A., et al. (2019). Language models are unsupervised multitask learners: Causal lower-triangular decoding parameters. *OpenAI Blog Monograph*.
 3. Beltagy, I., Peters, M. E., & Cohan, A. (2020). Longformer: The long-document transformer via localized sliding window masking. *arXiv preprint arXiv:2004.05150*.
