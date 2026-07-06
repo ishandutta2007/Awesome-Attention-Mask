@@ -35,25 +35,12 @@ flowchart LR
 
 Attention masks are strictly categorized based on the geometric boundaries they enforce over the Query-Key probability distribution.
 
-- ### A. Padding Attention Mask
-	*   **Mechanism:** A 1D binary vector translated into a 2D matrix. It tracks the physical sequence lengths inside a mini-batch, injecting $-\infty$ into any coordinate slot corresponding to a trailing `[PAD]` token index.
-	*   **Pros:** Mandatory for multi-sentence parallel training batches, ensuring loss gradients reflect authentic data text patterns.
-
-- ### B. Causal / Lower-Triangular Mask
-	*   **Mechanism:** Imposes a strict chronological arrow of time over token generation, setting the attention score to zero for all future indices where column position $j > \text{row position } i$:
-	    $$M_{ij} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
-
-```mermaid
-flowchart TB
-    A["Causal Lower-Triangular Mask Matrix<br>Token Position (j) ───><br>Row (i) ┌──────────────────────────────────────┐<br>0:   │   0  │ -∞  │ -∞  │ -∞  │ -∞  │ -∞  │  (Token 0 reads only itself)<br>1:   │   0  │   0  │ -∞  │ -∞  │ -∞  │ -∞  │  (Token 1 reads 0 and 1)<br>2:   │   0  │   0  │   0  │ -∞  │ -∞  │ -∞  │<br>3:   │   0  │   0  │   0  │   0  │ -∞  │ -∞  │<br>4:   │   0  │   0  │   0  │   0  │   0  │ -∞  │<br>5:   │   0  │   0  │   0  │   0  │   0  │   0  │  (Terminal Token reads all)<br>└──────────────────────────────────────┘"]
-```
-
-- ### C. Local / Sliding Window Attention Mask
-	*   **Mechanism:** Restricts a token's attention field to a thin, localized neighborhood of adjacent tokens ($i \pm W/2$), masking out distant indices.
-	*   **Pros:** Slashes computational complexity down to true linear scaling ($O(N \times W)$), allowing compact models to serve long context horizons on resource-constrained edge hardware.
-
-- ### D. Prefix / Interleaved Segment Mask
-	*   **Mechanism:** Tailored for instruction-following and Retrieval-Augmented Generation (RAG) structures. It permits bidirectional attention (all tokens see all tokens) over the initial system prompt or context document segment, switching strictly to a causal lower-triangular mask only when the model initializes its own autoregressive response phase.
+| Concept | Description | Year | Paper | Details |
+|---|---|---|---|---|
+| **Padding Attention Mask** | Mechanism: A 1D binary vector translated into a 2D matrix. It tracks the physical sequence lengths inside a mini-batch, injecting negative infinity into any coordinate slot corresponding to a trailing [PAD] token index. | 2017 | [Paper](https://arxiv.org/abs/1706.03762) | [Read More](./assets/pages/padding-mask.md) |
+| **Causal / Lower-Triangular Mask** | Mechanism: Imposes a strict chronological arrow of time over token generation, setting the attention score to zero for all future indices where column position j > row position i. | 2018 | [Paper](https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf) | [Read More](./assets/pages/causal-mask.md) |
+| **Local / Sliding Window Attention Mask** | Mechanism: Restricts a token's attention field to a thin, localized neighborhood of adjacent tokens, masking out distant indices. | 2020 | [Paper](https://arxiv.org/abs/2004.05150) | [Read More](./assets/pages/sliding-window-mask.md) |
+| **Prefix / Interleaved Segment Mask** | Mechanism: Tailored for instruction-following and Retrieval-Augmented Generation (RAG) structures. | 2021 | [Paper](https://arxiv.org/abs/2108.12409) | [Read More](./assets/pages/prefix-mask.md) |
 
 ---
 
