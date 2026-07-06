@@ -13,7 +13,8 @@ The technical implementation of attention routing has transitioned from rigid fl
 
 
 ```mermaid
-[Padding Masking (Vaswani, 2017)] ───> [Causal Triangular Masks (2018)] ───> [Block-Sparse Masking (FlashAttn, 2022)] ───> [Unified Omni Segment Maps (Present)](Variable Batch Sequence Alignment)       (Autoregressive Decoding Hard-Locks)       (Hardware-Fused Contiguous Tiles)          (Cross-Modal Interleaved Token Fusions)
+flowchart LR
+    A["Padding Masking (Vaswani, 2017)<br>(Variable Batch Sequence Alignment)"] --> B["Causal Triangular Masks (2018)<br>(Autoregressive Decoding Hard-Locks)"] --> C["Block-Sparse Masking (FlashAttn, 2022)<br>(Hardware-Fused Contiguous Tiles)"] --> D["Unified Omni Segment Maps (Present)<br>(Cross-Modal Interleaved Token Fusions)"]
 ```
 
 *   **The Variable-Length Padding Alignment Era (Vaswani et al., 2017)**
@@ -43,7 +44,8 @@ Attention masks are strictly categorized based on the geometric boundaries they 
 	    $$M_{ij} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
 
 ```mermaid
-Causal Lower-Triangular Mask MatrixToken Position (j) ───>Row (i) ┌──────────────────────────────────────┐0:   │   0  │ -∞  │ -∞  │ -∞  │ -∞  │ -∞  │  (Token 0 reads only itself)1:   │   0  │   0  │ -∞  │ -∞  │ -∞  │ -∞  │  (Token 1 reads 0 and 1)2:   │   0  │   0  │   0  │ -∞  │ -∞  │ -∞  │3:   │   0  │   0  │   0  │   0  │ -∞  │ -∞  │4:   │   0  │   0  │   0  │   0  │   0  │ -∞  │5:   │   0  │   0  │   0  │   0  │   0  │   0  │  (Terminal Token reads all)└──────────────────────────────────────┘
+flowchart TB
+    A["Causal Lower-Triangular Mask Matrix<br>Token Position (j) ───><br>Row (i) ┌──────────────────────────────────────┐<br>0:   │   0  │ -∞  │ -∞  │ -∞  │ -∞  │ -∞  │  (Token 0 reads only itself)<br>1:   │   0  │   0  │ -∞  │ -∞  │ -∞  │ -∞  │  (Token 1 reads 0 and 1)<br>2:   │   0  │   0  │   0  │ -∞  │ -∞  │ -∞  │<br>3:   │   0  │   0  │   0  │   0  │ -∞  │ -∞  │<br>4:   │   0  │   0  │   0  │   0  │   0  │ -∞  │<br>5:   │   0  │   0  │   0  │   0  │   0  │   0  │  (Terminal Token reads all)<br>└──────────────────────────────────────┘"]
 ```
 
 - ### C. Local / Sliding Window Attention Mask
